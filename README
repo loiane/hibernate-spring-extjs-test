@@ -1,0 +1,18 @@
+Sample project developed to test Spring 3 - Hibernate 3.5 and ExtJS integration
+ExtJS ComboBox example
+
+I used Eclipse Helios and Tomcat 7.0 to develop this app. 
+This project is in Eclipse dynamic web project format.
+
+All libs are included.
+
+First of all execute the MySQL scrip: sql/script.sql
+
+Url to run this app: http://localhost:8080/hibernate-spring-extjs-test
+
+GPL 3.0 license included.
+
+For more information:
+Author: Loiane Groner
+http://loianegroner.com (English)
+http://loiane.com (Portuguese)
