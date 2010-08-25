@@ -22,11 +22,7 @@
      <!-- Hibernate SessionFactory -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
         <property name="dataSource"><ref local="dataSource"/></property>
-        <property name="annotatedClasses">
-			<list>
-				<value>com.loiane.model.State</value>
-			</list>
-		</property>
+         <property name="packagesToScan" value="com.loiane.model" />
         <property name="hibernateProperties">
         <props>
             <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -41,8 +37,5 @@
         <property name="sessionFactory"><ref local="sessionFactory"/></property>
     </bean>
     
-     <bean id="stateDAO" class="com.loiane.dao.StateDAO">
-        <property name="sessionFactory"><ref local="sessionFactory"/></property>
-    </bean>
 
 </beans>

@@ -2,7 +2,9 @@ package com.loiane.dao;
 
 import java.util.List;
 
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.loiane.model.State;
@@ -15,28 +17,35 @@ import com.loiane.model.State;
  * http://loiane.com (Portuguese)
  */
 @Repository
-public class StateDAO extends HibernateDaoSupport implements IStateDAO{
+public class StateDAO implements IStateDAO{
+	
+	private HibernateTemplate hibernateTemplate;
+
+	@Autowired
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		hibernateTemplate = new HibernateTemplate(sessionFactory);
+	}
 
 	@Override
 	public State getState(Long id) {
-		return getHibernateTemplate().get(State.class, id);
+		return hibernateTemplate.get(State.class, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<State> getStates() {
-		return getHibernateTemplate().find("from State");
+		return hibernateTemplate.find("from State");
 	}
 
 	@Override
 	public void saveState(State record) {
-		getHibernateTemplate().saveOrUpdate(record);
+		hibernateTemplate.saveOrUpdate(record);
 	}
 
 	@Override
 	public void removeState(Long id) {
-		Object record = getHibernateTemplate().load(State.class, id);
-		getHibernateTemplate().delete(record);
+		Object record = hibernateTemplate.load(State.class, id);
+		hibernateTemplate.delete(record);
 	}
 
 }
